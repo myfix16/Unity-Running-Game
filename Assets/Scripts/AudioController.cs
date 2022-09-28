@@ -9,6 +9,8 @@ public class AudioController : MonoBehaviour
     public AudioClip ThirdAudioClip;
     public AudioSource Audio;
 
+    public PlayerController playerControllerScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +18,15 @@ public class AudioController : MonoBehaviour
         Audio.PlayOneShot(FirstAudioClip);
         Audio.PlayOneShot(SecondAudioClip);
         Audio.PlayOneShot(ThirdAudioClip);
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (playerControllerScript.gameOver)
+        {
+            Audio.Stop();
+        }
     }
 }
